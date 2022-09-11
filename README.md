@@ -27,3 +27,10 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
+12 de ago de 2022 18:06:11
+225 Rua Amambaí
+Pinheirinho
+Pato Branco
+Paraná
