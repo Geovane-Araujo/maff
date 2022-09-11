@@ -1,5 +1,9 @@
 <template>
-
+<div class="loading" v-show="isLoading">
+  <div class="lo-gi">
+  </div>
+  Processando imagem... aguarde!
+</div>
   <div class="image-selector">
     <div v-for="image in images" :key="image">
       <div class="mini-images" @click="onOpenPreview(image)">
@@ -31,8 +35,6 @@
 <script>
 import Button from 'primevue/button'
 import domtoimage from "dom-to-image-more"
-import { saveAs } from 'file-saver'
-import {v4 as uuidv4} from 'uuid'
 import axios from 'axios'
 export default {
   name: 'ImagePreview',
@@ -40,7 +42,8 @@ export default {
     return {
       previewOpen: false,
       viewImage: '',
-      viewText: []
+      viewText: [],
+      isLoading: false
     }
   },
   methods: {
@@ -73,6 +76,7 @@ export default {
       this.previewOpen = (this.previewOpen ? false : true)
     },
     onDownloadImage () {
+      this.isLoading = true
       console.log(this.viewText)
       var node = document.getElementById('text')
       domtoimage.toBlob(node).then(blob => {
@@ -85,13 +89,15 @@ export default {
             imgText: base
           }
           
-          axios.post("http://localhost:8090/hub/util/convertb64", images).then(res => {
+          axios.post("https://adonaisoft.com:8090/utils/textImage", images).then(res => {
             var image = new Image();
             image.src = res.data;
             var w = window.open("")
             w.document.write(image.outerHTML)
+            this.isLoading = false
           }).catch(err => {
-            alert(err)
+            alert(err.message)
+            this.isLoading = false
           })
         }
         
@@ -110,6 +116,24 @@ export default {
 
 <style scoped lang="scss">
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+.loading{
+  position: absolute;
+  z-index: 9999;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 25px;
+  background-color: rgba($color: #f5f4f4, $alpha: 0.7);
+  .lo-gi{
+    height: 300px;
+    width: 500px;
+    background-image: url('../assets/logif.gif');
+    background-repeat: no-repeat;
+  }
+}
 .image-preview {
   width: 100vw;
   height: 100vh;
