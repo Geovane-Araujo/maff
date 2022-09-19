@@ -64,10 +64,11 @@ export default {
       function resizeDiv(height, width){
         var divimg = document.getElementById("content-image");
         var divtext = document.getElementsByClassName("text")[0];
-        divimg.style.width = width + 'px';
-        divimg.style.height = height + 'px';
-        divtext.style.left = (width - 355) + 'px';
-        divtext.style.top = (height - 145) + 'px';
+        divimg.style.width = '1100px';
+        divimg.style.height = '800px';
+        console.log(divimg.style.height)
+        divtext.style.left = (1100 - 355) + 'px';
+        divtext.style.top = (800 - 145) + 'px';
 
       }
       this.previewOpen = true
@@ -116,6 +117,10 @@ export default {
 
 <style scoped lang="scss">
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@font-face {
+  font-family: "Araboto-Normal";
+  src: url('../assets/Araboto-Normal.ttf');
+}
 .loading{
   position: absolute;
   z-index: 9999;
@@ -149,7 +154,9 @@ export default {
   }
 }
 .content{
-  height: 95%;
+  widows: 80%;
+  height: 80%;
+  background-size: cover;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -174,12 +181,12 @@ img {
   flex-wrap: wrap;
 }
 #content-image{
+  background-size: cover;
   background-color: black;
-  background-size: auto;
   background-repeat: no-repeat;
 }
 .text{
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Araboto-Normal';
   font-size: 20px;
   text-align: end;
   position: relative;
