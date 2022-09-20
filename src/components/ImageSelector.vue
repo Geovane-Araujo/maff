@@ -67,8 +67,8 @@ export default {
         divimg.style.width = '1100px';
         divimg.style.height = '800px';
         console.log(divimg.style.height)
-        divtext.style.left = (1100 - 355) + 'px';
-        divtext.style.top = (800 - 145) + 'px';
+        divtext.style.left = (1100 - 555) + 'px';
+        divtext.style.top = (800 - 245) + 'px';
 
       }
       this.previewOpen = true
@@ -78,7 +78,6 @@ export default {
     },
     onDownloadImage () {
       this.isLoading = true
-      console.log(this.viewText)
       var node = document.getElementById('text')
       domtoimage.toBlob(node).then(blob => {
         var reader = new FileReader();
@@ -187,11 +186,12 @@ img {
 }
 .text{
   font-family: 'Araboto-Normal';
-  font-size: 20px;
+  font-size: 30px;
   text-align: end;
   position: relative;
-  width: 350px;
-  height: 140px;
-  color: rgb(248, 252, 251);
+  width: 550px;
+  height: 210px;
+  // background-color: rgba(255,255,255,0.4);
+  color: #ffffff;
 }
 </style>
