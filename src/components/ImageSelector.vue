@@ -19,9 +19,9 @@
     <div class="content">
       <div id="content-image">
         <div id="text" class="text">
-          <p>
+          <p class="text-padding">
             {{ viewText[0] }} <br/>
-            {{ viewText[1] }} <br/>
+            {{ viewText[1] }} <br/><div class="space"></div>
             {{ viewText[2] }} <br/>
             {{ viewText[3] }} <br/>
             {{ viewText[4] }} <br/>
@@ -66,9 +66,10 @@ export default {
         var divtext = document.getElementsByClassName("text")[0];
         divimg.style.width = '1100px';
         divimg.style.height = '800px';
-        console.log(divimg.style.height)
+        var height = document.getElementById('text').style;
+        console.log(height)
         divtext.style.left = (1100 - 555) + 'px';
-        divtext.style.top = (800 - 245) + 'px';
+        divtext.style.top = (800 - 185) + 'px';
 
       }
       this.previewOpen = true
@@ -90,6 +91,7 @@ export default {
           }
           
           axios.post("https://adonaisoft.com:8090/utils/textImage", images).then(res => {
+          // axios.post("http://localhost:8090/utils/textImage", images).then(res => {
             var image = new Image();
             image.src = res.data;
             var w = window.open("")
@@ -119,6 +121,23 @@ export default {
 @font-face {
   font-family: "Araboto-Normal";
   src: url('../assets/Araboto-Normal.ttf');
+}
+.space{
+  height: 7px;
+}
+.text{
+  font-family: 'Araboto-Normal';
+  font-size: 25px;
+  text-align: end;
+  position: relative;
+  text-shadow: 0.085em 0.0em 0.0em rgb(151, 153, 155);
+  width: 550px;
+  height: 185px;
+  // background-color: rgba(255,255,255,0.4);
+  color: #ffffff;
+}
+.text-padding{
+  line-height: 30px;
 }
 .loading{
   position: absolute;
@@ -184,14 +203,5 @@ img {
   background-color: black;
   background-repeat: no-repeat;
 }
-.text{
-  font-family: 'Araboto-Normal';
-  font-size: 30px;
-  text-align: end;
-  position: relative;
-  width: 550px;
-  height: 210px;
-  // background-color: rgba(255,255,255,0.4);
-  color: #ffffff;
-}
+
 </style>
